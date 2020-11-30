@@ -4,7 +4,7 @@ var pluralize = require('pluralize')
 
 
 const pluralized = (props) => {
-  let text = pluralize('bicicle', props.number)
+  let text = pluralize('bicycle', props.number)
   return (
     <div className={classes.Pluralize}>
       <h1>Pluralizing</h1>
