@@ -1,0 +1,27 @@
+.Pluralize {
+  display: grid;
+  justify-content: center;
+}
+
+.Pluralize p {
+  justify-self: center;
+  font-size: 1.2rem;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  border: 3px solid ;
+  height: 3rem;
+  width: auto;
+  min-width: 7rem;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+.Pluralize p span {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.Pluralize h5 {
+  text-align: center;
+}
