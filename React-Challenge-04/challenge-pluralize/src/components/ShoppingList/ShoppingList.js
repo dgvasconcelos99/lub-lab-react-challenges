@@ -5,39 +5,47 @@ var pluralize = require('pluralize')
 const shoppingList = (props) => {
 
   const quantityItems = () => {
-    return Object.keys(props.shoppingItems).length
-  }
-
-  const totalItems = () => {
-    return Object.values(props.shoppingItems).reduce((total, num) => {
-      return total + num
-    })
+    return props.shoppingItems.reduce((total, item) => {
+      return total + item.quantity
+    }, 0)
   }
 
   const descriptionItems = () => {
-    let result = ''
-    return Object.keys(props.shoppingItems).map((item, index) => {
-      let quantityItem = props.shoppingItems[item]
-      let name = quantityItem + ' ' + pluralize(item, quantityItem)
-      return result.concat(
-        index === Object.keys(props.shoppingItems).length - 1 
-        ? ' and ' : ', ', name
+    return props.shoppingItems.reduce((total, item, index) => {
+      let name = item.quantity + ' ' + pluralize(item.name, item.quantity)
+      return total.concat(
+        index === props.shoppingItems.length - 1 ? 
+        ' and ' + name + '.' : 
+        index === 0 ? name : ', ' + name
       )
-    })
+    }, '')
   }
 
   const calculatePriceItem = (item) => {
-    const priceItem = props.itemsPrices[item]
-    const quantityItem = props.shoppingItems[item]
-    const result = priceItem * quantityItem
-    return result.toLocaleString('pt-BR', {style: 'currency', 'currency': 'BRL'})
+    let finalPrice = item.price * item.quantity
+    return finalPrice.toLocaleString(
+      'pt-BR', 
+      {style: 'currency', 'currency': 'BRL'}
+    )
   }
 
-  let shoppingItems = Object.keys(props.shoppingItems)
+  const calculateTotalPrice = () => {
+    const result =  props.shoppingItems.reduce((total, item) => {
+      return total + (item.price * item.quantity)
+    }, 0)
+
+    return result.toLocaleString(
+      'pt-BR', 
+      {style: 'currency', 'currency': 'BRL'}
+    )
+  }
+
+  let shoppingItems = props.shoppingItems
     .map(item => {
       return (
-        <li key={item}>
-          <span>{props.shoppingItems[item]}x {item}:</span><span className={classes.Price}>{calculatePriceItem(item)}</span> 
+        <li key={item.name}>
+          <span>{item.quantity}x {pluralize(item.name, item.quantity)}:</span>
+          <span className={classes.Price}>{calculatePriceItem(item)}</span> 
         </li>
       )
     })
@@ -48,12 +56,15 @@ const shoppingList = (props) => {
         style={{backgroundColor: props.bgColor}}
       >
         <h1>Shopping</h1>
-        <p>Shopping list: {quantityItems()}</p>
+        <p>Shopping list: {quantityItems()} products</p>
         <ul>
           {shoppingItems}
         </ul>
         <p className={classes.Summary}>Summary</p>
-        <p className={classes.Summary}>{totalItems()} {pluralize('item', totalItems())}: {descriptionItems()}</p>
+        <p className={classes.Summary}>
+          {quantityItems()} {pluralize('item', quantityItems())}: {descriptionItems()}
+        </p>
+        <h5 className={classes.FinalPrice}>Total: {calculateTotalPrice()}</h5>
       </div>
     </div>
   )
