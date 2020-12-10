@@ -1,0 +1,58 @@
+.Main {
+  height: auto;
+  width: 100vw;
+}
+
+.ShoppingList {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  max-width: 25rem;
+  font-size: 1.2rem;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0.5rem;
+  margin-top: 20%;
+  transition: all ease 0.5s;
+  box-shadow: 0 2px 3px #ccc;
+}
+
+.ShoppingList ul li span {
+  font-size: 1.3rem;
+}
+
+.ShoppingList ul li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ShoppingList ul {
+  padding-inline-end: 40px;
+}
+
+.Price {
+  display: inline;
+  float: right;
+}
+
+.Summary {
+  text-align: left;
+  margin-left: 40px;
+}
+
+.FinalPrice {
+  font-size: 1.5rem;
+}
+
+.ButtonDrop {
+  cursor: pointer;
+}
+
+.Title {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

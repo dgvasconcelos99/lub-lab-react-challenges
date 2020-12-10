@@ -1,0 +1,21 @@
+.Main {
+  display: flex;
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.Main input {
+  size: 1.5rem;
+}
+
+.DivRadio {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+  font-size: 1.2rem;
+  flex-grow: 1;
+  flex-basis: 15%;
+}
