@@ -1,6 +1,7 @@
 .Main {
   height: auto;
   width: 100vw;
+  transition: all ease 0.5s;
 }
 
 .ShoppingList {
